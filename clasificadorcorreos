@@ -1,0 +1,28 @@
+# 1. NUESTROS DATOS (Mensajes de prueba)
+correos_nuevos = [
+    "Hola, ¿vamos por unos tacos saliendo de la escuela?",
+    "¡URGENTE! Gana dinero rápido desde casa dando clic aquí",
+    "Recuerda que mañana es el examen de Inteligencia Artificial",
+    "Felicidades, ganaste un premio gratis, da clic ya"
+]
+
+# 2. NUESTRO MODELO (Entrenamiento/Reglas)
+# El modelo "aprende" que estas palabras suelen ser de correos basura
+palabras_spam = ["gratis", "ganaste", "clic", "dinero", "urgente"]
+
+def modelo_ia_filtro(correo):
+    # Convertimos a minúsculas para que no afecten las mayúsculas
+    correo_minuscula = correo.lower()
+    
+    # El modelo busca si alguna palabra sospechosa está en el correo
+    for palabra in list(palabras_spam):
+        if palabra in correo_minuscula:
+            return "SPAM" # Predicción 1
+            
+    return "CORREO DESEADO" # Predicción 2
+
+# 3. EVALUACIÓN Y PREDICCIÓN
+print("--- EJECUTANDO NUESTRA IA ---")
+for i, correo in enumerate(correos_nuevos, 1):
+    prediccion = modelo_ia_filtro(correo)
+    print(f"Correo {i}: '{correo}' -> PREDICCIÓN DE LA IA: {prediccion}")
